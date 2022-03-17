@@ -1,34 +1,24 @@
 ﻿using System;
 
 namespace dz2
-{ 
- 
-class Conversion
-    {
-
-        public string v;
-        public void Per(int i)
-        {
-            if (i > 0)
-            {
-                if (i % 2 == 1)
-                    v += "1";
-                else
-                    v += "0";
-                Per(i / 2);
-            }
-        }
-    }
+{
+    
     class ConsoleConversion
     {
+        public static string Per(int i, int n)
+        {
+            if (i > 0)
+               return Per(i / n,n) + i % n;
+            return "";
+        }
         static void Main()
         {
             int num;
-            Conversion ob = new Conversion();
             Console.Write("Введите число: ");
             num = Convert.ToInt32(Console.ReadLine());
-            ob.Per(num);
-            Console.WriteLine("Ваше число в двоичной системе: {0}", ob.v);
+            Console.Write("Введите систему счисления: ");
+            int bas = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Ваше число в {0}-ной системе счисления: {1}",bas, Per(num,bas));
             Console.ReadKey();
         }
     }
